@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div align="center">
+<a th:href="@{/thing/s}">to list page</a>
+</div>
+<br>
+<h2 align="center" th:text="'name: '+${thing.getName()}"></h2>
+<div align="center" style="text-align: center">
+    <h3>About: </h3>
+    <h4>-> id: <i align="center" th:text="'id: '+${thing.getId()}"></i></h4>
+    <h4>-> description: <i th:text="${thing.getDescription()}"></i></h4>
+</div>
+</body>
+</html>
