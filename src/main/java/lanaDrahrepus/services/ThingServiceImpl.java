@@ -4,8 +4,6 @@ import lanaDrahrepus.model.Thing;
 import lanaDrahrepus.repository.ThingsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ThingServiceImpl implements ThingService {
     @Autowired
@@ -19,5 +17,10 @@ public class ThingServiceImpl implements ThingService {
     @Override
     public void create(Thing thing) {
         thingsRepo.save(thing);
+    }
+
+    @Override
+    public Thing findById(Integer id) {
+        return thingsRepo.findOne(id);
     }
 }

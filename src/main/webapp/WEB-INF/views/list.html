@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
-hi
+<div align="center" style="padding-top: 30px">
+    <table border="1">
+        <tr>
+            <td>id: </td>
+            <td>name: </td>
+            <td>description: </td>
+        </tr>
+        <th:block th:each="thing : ${things}">
+            <tr>
+                <td th:text="${thing.getId()}"></td>
+                <td th:text="${thing.getName()}"></td>
+                <td th:text="${thing.getDescription()}"></td>
+            </tr>
+        </th:block>
+    </table>
+    </table>
+</div>
 </body>
 </html>
