@@ -1,5 +1,7 @@
 package lanaDrahrepus;
 
+import lanaDrahrepus.services.ThingService;
+import lanaDrahrepus.services.ThingServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -8,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -35,6 +38,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("lanaDrahrepus")
 @EnableJpaRepositories("lanaDrahrepus.repository")
+@EnableSpringDataWebSupport
 public class ApplicationConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     ApplicationContext applicationContext;
 
@@ -44,14 +48,17 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     //injectClass
-
+    @Bean
+    public ThingService thingService() {
+        return new ThingServiceImpl();
+    }
 
     //thymeleaf
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views");
+        templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         return templateResolver;
@@ -94,7 +101,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/toandz");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/god");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
         return dataSource;
