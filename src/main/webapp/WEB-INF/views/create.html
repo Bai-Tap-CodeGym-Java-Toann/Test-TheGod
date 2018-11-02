@@ -6,6 +6,9 @@
 </head>
 <body>
 <div align="center" style="text-align: center">
+    <h2>Create</h2>
+    <a th:href="@{/thing/s}">to list view</a>
+    <br>
     <form method="post" th:object="${thing}">
         <label for="name">Thing's name</label>
         <br>

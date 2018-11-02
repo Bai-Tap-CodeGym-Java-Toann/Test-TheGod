@@ -22,6 +22,11 @@ public class ThingsController {
         return new Thing();
     }
 
+    @GetMapping("/")
+    public ModelAndView rootHandle(){
+        return new ModelAndView("redirect:/thing");
+    }
+
     @GetMapping("/thing")
     public ModelAndView getThingCreatePage() {
         return new ModelAndView("create");
